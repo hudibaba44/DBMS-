@@ -1,0 +1,3 @@
+ insert into Hotel_Reservation(Hid,Cost,Room_ID,Start_Date,End_Date,User_ID) values('fffc23c6c03b1afb35c93db19281fc35',2272,26,'2018-01-01','2018-01-05',1);
+insert into Hotel_Reservation(Hid,Cost,Room_ID,Start_Date,End_Date,User_ID) values('fffc23c6c03b1afb35c93db19281fc35',1158,26,'2018-02-04','2018-02-05',1);
+insert into Hotel_Reservation(Hid,Cost,Room_ID,Start_Date,End_Date,User_ID) values('fc48bc06dd4dd976c1f1144bc2f275c9',2227,19,'2018-03-12','2018-03-15',1);

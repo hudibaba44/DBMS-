@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+ 
+<head>
+    <title>Python Flask Bucket List App</title>
+ 
+ 
+    <link href="http://getbootstrap.com/dist/css/bootstrap.min.css" rel="stylesheet">
+ 
+    <link href="http://getbootstrap.com/examples/jumbotron-narrow/jumbotron-narrow.css" rel="stylesheet">
+    <link href="../static/css/signup.css" rel="stylesheet">
+ 
+    <style type="text/css">
+    body {background-color: rgba(125,150,255,0.4);height:100%;
+    width:100%;
+    padding:0;
+    margin:0;}
+    table {
+        width:100%;
+    }
+        #btnhistory { display:inline-table;  margin:10px 10px 10px 10px;}
+    
+    nav { background-color:rgba(0,0,0,.5); font-size: 25px;}
+nav a { color: white; display: inline-block; text-decoration: none; position:relative; padding-left: 4px; padding-right: 4px;}
+nav a:hover { color:rgba(255,255,255,0.5);text-align: center; }
+nav > ul > li { display: inline-block; text-align: center; padding-left: 4px; padding-right: 4px;}
+nav > ul { list-style-type: none; padding-left: 4px; padding-right: 4px;}
+    .header1 {display: inline-block;
+            width: 100%;
+            line-height: 2em;
+            text-align: center;
+            text-decoration: none;
+            border-radius: 5px;}</style>
+
+</head>
+ 
+<body>
+     <nav>
+            <ul class="header1" style="padding:10px 10px 10px 10px; margin: 10px 10px 10px 10px;">
+                <li role="presentation"><a href="showTrainHistory">Train History</a>
+                </li>
+                <li role="presentation"><a href="showHotelHistory">Hotel History</a>
+                </li>
+                <li role="presentation"><a href="showBookTrain">Book Train</a>
+                </li>
+                 <li role="presentation"><a href="showBookHotel">Book Hotel</a>
+                </li>
+                <li role="presentation" class="active"><a href="/logout">Logout</a></li>
+            </ul>
+    </nav>
+           
+    <div class="container">
+        
+        <br><br>
+        <div class="jumbotron" style="text-align: center;">
+            <h1>Book Hotel</h1>
+ 
+        </div>
+    <div>
+
+    </div>
+ 
+      <form action="/BookHotel1" method="post">
+            City
+            <input type = "text" name = "city">
+            Start Date
+            <input type="date" name="sdate">
+            End date
+            <input type="date" name="edate">
+            <select name="rtype">
+                {% for rtype in roomtype %}
+                <option value="{{rtype[0]}}">{{rtype[0]}}</option>
+                {% endfor %}
+            </select>
+            <select name="ac">
+                {% for iterac in ac %}
+                <option value="{{iterac[0]}}">{{iterac[0]}} AC</option>
+                {% endfor %}
+            </select>
+
+            <center><input type="submit" name="H_search" value="Search"></center>
+        </form>
+ 
+    </div>
+</body>
+ 
+</html>
+
+

@@ -1,0 +1,155 @@
+<html lang="en">
+ 
+<head>
+    <title>Python Flask Bucket List App</title>
+ 
+ 
+    <!--<link href="http://getbootstrap.com/dist/css/bootstrap.min.css" rel="stylesheet">
+ 
+    <link href="http://getbootstrap.com/examples/jumbotron-narrow/jumbotron-narrow.css" rel="stylesheet"> -->
+    <link href="../static/css/signup.css" rel="stylesheet">
+    <style type="text/css">
+     body {background-color: rgba(125,150,255,0.4);}
+    
+        #btnhistory { display:inline-table;  margin:10px 10px 10px 10px;}
+    nav { background-color:rgba(0,0,0,.5); font-size: 25px;}
+nav a { color: white; display: inline-block; text-decoration: none; position:relative; padding-left: 4px; padding-right: 4px;}
+nav a:hover { color:rgba(255,255,255,0.5);text-align: center; }
+nav > ul > li { display: inline-block; text-align: center; padding-left: 4px; padding-right: 4px;}
+nav > ul { list-style-type: none; padding-left: 4px; padding-right: 4px;}
+    .header1 {display: inline-block;
+            width: 100%;
+            line-height: 2em;
+            text-align: center;
+            text-decoration: none;
+            border-radius: 5px;}</style>
+
+</head>
+
+<body>
+    <script type="text/javascript">
+        function getQuery(value) {
+            /*based on date, cost,(everything sort ascending and descending)
+            time, source, destination
+            */
+            var div = document.querySelector('.options');
+            var results_div = document.querySelector('.results');
+            if(value == 'Date') {
+                results_div.innerHTML = ""
+                div.innerHTML = "";
+                var form = document.createElement('form');
+                form.action = "/showTrainHistoryByDate";
+                form.method = "POST";
+                var date_element_1 = document.createElement('input');
+                date_element_1.type = "date";
+                date_element_1.name = "startDate";
+                var label_1 = document.createElement('label')
+                label_1.innerHTML = "Start Date: "
+                var date_element_2 = document.createElement('input');
+                date_element_2.type = "date";
+                date_element_2.name = "endDate";
+                var label_2 = document.createElement('label')
+                label_2.innerHTML = "End Date: "
+                var submit = document.createElement('input');
+                submit.type = "submit";
+                var order = document.createElement('input')
+                form.appendChild(label_1)
+                form.appendChild(date_element_1);
+                form.appendChild(label_2)
+                form.appendChild(date_element_2);
+                form.appendChild(submit);
+                div.appendChild(form);
+            } else if(value == 'Cost' || value == 'Distance' || value == 'Place' || value == 'StationCode') {
+                results_div.innerHTML = "";
+                div.innerHTML = "";
+                var form = document.createElement('form');
+                form.action = "/showTrainHistoryBy"+value;
+                form.method = "POST";
+                var date_element_1 = document.createElement('input');
+                date_element_1.type = "text";
+                date_element_1.name = "start"+value;
+                var date_element_2 = document.createElement('input');
+                date_element_2.type = "text";
+                date_element_2.name = "end"+value;
+                var submit = document.createElement('input');
+                submit.type = "submit";
+                var label_1 = document.createElement('label')
+                label_1.innerHTML = "Start "+value+": "
+                var label_2 = document.createElement('label')
+                label_2.innerHTML = "End "+value+": "
+                form.appendChild(label_1)
+                form.appendChild(date_element_1);
+                form.appendChild(label_2)
+                form.appendChild(date_element_2);
+                form.appendChild(submit);
+                div.appendChild(form);
+            } 
+        }
+
+
+    </script>
+    <nav>
+            <ul class="header1" style="padding:10px 10px 10px 10px; margin: 10px 10px 10px 10px;">
+                <li role="presentation"><a href="showTrainHistory">Train History</a>
+                </li>
+                <li role="presentation"><a href="showHotelHistory">Hotel History</a>
+                </li>
+                <li role="presentation"><a href="showBookTrain">Book Train</a>
+                </li>
+                 <li role="presentation"><a href="showBookHotel">Book Hotel</a>
+                </li>
+                <li role="presentation" class="active"><a href="/logout">Logout</a></li>
+            </ul>
+    </nav>
+
+    <div class="container">
+        
+ <br><br>
+     <div class="jumbotron" style="text-align: center;">
+            <h1>Train History</h1>
+ 
+        </div>
+        <select name="query" onchange="getQuery(value)">
+            <option>Select Option</option>
+            <option  value="Date">Date</option>
+            <option value="Cost">Cost</option>
+            <option value="Distance">Distance</option>
+            <option value="Place">Place</option>
+            <option value = "StationCode">Station Code</option>
+        </select>
+        <div class = "options" align = "center"> </div>
+        <div class = "results"> 
+            {% if data|length > 0 %}
+             <table border=1px  cellpadding=10px text-align="center" style="padding:10px 10px 10px 10px;">
+                
+                <tr>
+                    {% for column in data[0] %}
+                    <th>{{column}}</th>
+                    {% endfor %}
+                </tr>
+                
+                
+                {% for re in data[1] %}
+                <tr>
+                    {%for i in re %}
+                    <td text-align="center" >{{i}}</td>
+                    {% endfor %}
+               </tr>{% endfor %}
+            </table>
+             <center>
+ <form action="/cancelticketstrain" method="Post">
+     <input type="submit" name="Cancel Reservation" value="Cancel Reservation"></form>
+ </form></center>
+ </div>
+            {% endif %}
+        </div>
+    </div>
+
+</body>
+
+
+    <footer class="footer">
+           
+       
+        </footer>
+</html>

@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+ 
+<head>
+    <title>Python Flask Bucket List App</title>
+ 
+ 
+    <link href="http://getbootstrap.com/dist/css/bootstrap.min.css" rel="stylesheet">
+ 
+    <link href="http://getbootstrap.com/examples/jumbotron-narrow/jumbotron-narrow.css" rel="stylesheet">
+    <link href="../static/css/signup.css" rel="stylesheet">
+
+      <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+ 
+    <style type="text/css">
+   body {background-color: rgba(125,150,255,0.4);height:100%;
+    max-width:100%;
+    padding:0;
+    margin:0;}
+    table {
+        width:100%;
+    }
+        #btnhistory { display:inline-table;  margin:10px 10px 10px 10px;}
+    nav { background-color:rgba(0,0,0,.5); font-size: 25px;}
+nav a { color: white; display: inline-block; text-decoration: none; position:relative; padding-left: 4px; padding-right: 4px;}
+nav a:hover { color:rgba(255,255,255,0.5);text-align: center; }
+nav > ul > li { display: inline-block; text-align: center; padding-left: 4px; padding-right: 4px;}
+nav > ul { list-style-type: none; padding-left: 4px; padding-right: 4px;}
+    .header1 {display: inline-block;
+            width: 100%;
+            line-height: 2em;
+            text-align: center;
+            text-decoration: none;
+            border-radius: 5px;}
+table {width: max-width;}
+        </style>
+
+</head>
+ 
+<body>
+     <nav>
+            <ul class="header1" style="padding:10px 10px 10px 10px; margin: 10px 10px 10px 10px;">
+                <li role="presentation"><a href="showTrainHistory">Train History</a>
+                </li>
+                <li role="presentation"><a href="showHotelHistory">Hotel History</a>
+                </li>
+                <li role="presentation"><a href="showBookTrain">Book Train</a>
+                </li>
+                 <li role="presentation"><a href="showBookHotel">Book Hotel</a>
+                </li>
+                <li role="presentation" class="active"><a href="/logout">Logout</a></li>
+            </ul>
+    </nav>
+           
+    <div class="container">
+        
+        <br><br>
+        <div class="jumbotron" style="text-align: center;">
+            <h1>Book Hotel</h1>
+ 
+        </div>
+     <div align="center" style="width:100%;">
+            <table width=100 border=1px cellpadding=10px text-align="center" style="padding:10px 10px 10px 10px; ">
+                <tr>
+                    <th>Hotel Name</th>
+                    <th>Fare</th>
+                    <th>Stars</th>
+                    <th>Address</th>
+                    <th>Overview</th>
+                    
+                </tr>
+                {% for re in query_result %}
+                {% for re1 in re %}
+                <tr>
+                    <td text-align="center" >{{re1[0]}}</td>
+                    <td text-align="center" >{{re1[1]}}</td>
+                    <td text-align="center" >{{re1[2]}}</td>
+                    <td text-align="center" >{{re1[3]}}</td>
+                    <td text-align="center" >{{re1[4]}}</td>
+                    <form action="/BookHotel2" method="post">
+                    <input type="hidden" name="hid" value={{re1[5]}}>
+                    <input type="hidden" name="rtype" value={{room_type}}>
+                    <input type="hidden" name="ac" value={{ac}}>
+                    <input type="hidden" name="sd" value={{start_date}}>
+                    <input type="hidden" name="ed" value={{end_date}}>
+                    <input type="hidden" name="city" value={{city}}>
+
+
+                    <td text-align="center" ><button type="submit" class="btn btn-info" name="H_book" value = "Book" >Book</button></td>
+                    </form>
+                </tr>{% endfor %}
+                {% endfor %}
+               
+            </table>
+            
+ </div>
+ 
+      
+
+ 
+    </div>
+</body>
+ 
+</html>
+
+

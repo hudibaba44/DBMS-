@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+ 
+<head>
+    <title>Python Flask Bucket List App</title>
+    <style type="text/css">
+    body {background-image: url({{url_for('static', filename='img/background1.jpg')}}); background-size:cover;}
+    
+        #btnhistory { display:inline-block; padding: 10px 10px 10px 10px; width: 150px; margin:10px 10px 10px 10px;}
+    nav { background-color:rgba(0,0,0,.5); font-size: 25px;}
+nav a { color: white; display: inline-block; text-decoration: none; position:relative; padding-left: 4px; padding-right: 4px;}
+nav a:hover { color:rgba(255,255,255,0.5);text-align: center; }
+nav > ul > li { display: inline-block; text-align: center; padding-left: 4px; padding-right: 4px;}
+nav > ul { list-style-type: none; padding-left: 4px; padding-right: 4px;}
+    .header1 {display: inline-block;
+            width: 100%;
+            line-height: 2em;
+            text-align: center;
+            text-decoration: none;
+            border-radius: 5px;}</style>
+ 
+    <link href="http://getbootstrap.com/dist/css/bootstrap.min.css" rel="stylesheet">
+ 
+    <link href="http://getbootstrap.com/examples/jumbotron-narrow/jumbotron-narrow.css" rel="stylesheet">
+    <link href="../static/css/signup.css" rel="stylesheet">
+
+</head>
+ 
+<body>
+ 
+    <div class="container">
+        <div class="header1">
+            <nav>
+                <ul class="header">
+                    <li role="presentation" class="active"><a href="/logout">Logout</a>
+                    </li>
+                </ul>
+            </nav>
+   
+        </div>
+ 
+        <div class="jumbotron">
+            <h1>Welcome User</h1>
+ 
+        </div>
+        <div style="position:absolute; left:40%; top:48%;font-size:25px; ">
+        	User Name   :   {{userinfo[1]}}<br>
+        	Phone Number:   {{userinfo[2]}}<br>
+        	Email ID    :   {{userinfo[3]}}
+        </div>
+        <div >
+        	
+        <form action="/showTrainHistory" >
+        	<button id="btnhistory" class="input-group-btn" type="submit" >Train History</button>
+        </form>
+        <form action="/showHotelHistory" >
+        	<button id="btnhistory" class="input-group-btn" type="submit" >Hotel History</button>
+        </form>
+        <form action="/showBookTrain" >
+        	<button id="btnhistory" class="input-group-btn" type="submit">Book Train</button>
+        </form>
+                <form action="/showBookHotel">
+        	<button id="btnhistory" class="input-group-btn" type="submit">Book Hotel</button>
+        </form>
+ 		</div>
+ 		
+        <footer class="footer">
+           
+        </footer>
+ 
+    </div>
+</body>
+ 
+</html>

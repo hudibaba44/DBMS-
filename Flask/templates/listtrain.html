@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+ 
+<head>
+    <title>Python Flask Bucket List App</title>
+ 
+ 
+    <link href="http://getbootstrap.com/dist/css/bootstrap.min.css" rel="stylesheet">
+ 
+    <link href="http://getbootstrap.com/examples/jumbotron-narrow/jumbotron-narrow.css" rel="stylesheet">
+    <link href="../static/css/signup.css" rel="stylesheet">
+        <style>
+        body {background-color: rgba(125,150,255,0.4);}
+    
+        #btnhistory { display:inline-table;  margin:10px 10px 10px 10px;}
+    nav { background-color:rgba(0,0,0,.5); font-size: 25px;}
+nav a { color: white; display: inline-block; text-decoration: none; position:relative; padding-left: 4px; padding-right: 4px;}
+nav a:hover { color:rgba(255,255,255,0.5);text-align: center; }
+nav > ul > li { display: inline-block; text-align: center; padding-left: 4px; padding-right: 4px;}
+nav > ul { list-style-type: none; padding-left: 4px; padding-right: 4px;}
+    .header1 {display: inline-block;
+            width: 100%;
+            line-height: 2em;
+            text-align: center;
+            text-decoration: none;
+            border-radius: 5px;}</style>
+
+    
+
+   
+</head>
+ 
+<body>
+ 
+    <div class="container">
+        <div class="header1">
+             <nav>
+            <ul class="nav nav-pills pull-right" style="padding:10px 10px 10px 10px; margin: 10px 10px 10px 10px;">
+                <li role="presentation"><a href="showTrainHistory">Train History</a>
+                </li>
+                <li role="presentation"><a href="showHotelHistory">Hotel History</a>
+                </li>
+                <li role="presentation"><a href="#">Book Train</a>
+                </li>
+                 <li role="presentation"><a href="showBookHotel">Book Hotel</a>
+                </li>
+                <li role="presentation"><a href="/logout">Logout</a></li>
+            </ul>
+        </div>
+ 
+        <div class="jumbotron">
+            <h1>Book Train</h1>
+ 
+        </div>
+ 
+ 
+        <footer class="footer">
+           
+        </footer>
+ 
+    </div>
+   
+
+<center>
+    <table rules='all' border='1'>
+        <tr>
+            <td>Train No</td>
+            <td>Name</td>
+            <td>Scheduled Time</td>
+            <td>Type</td>
+        </tr>
+    {% for item in trains %}
+        <tr>
+            <td>{{item[0]}}</td>
+            <td>{{item[1]}}</td>
+            <td>{{item[2]}}</td>
+            <td>{{item[6]}}</td>
+        </tr>
+    {% endfor %}
+
+    </table>
+</center><br><br><center>
+    <table rules='all' border='1'>
+        <tr>
+            <td>Price</td>
+            <td>Seat Type</td>
+            <td>Train Type</td>
+        </tr>
+    {% for item in price %}
+        <tr>
+            <td>{{item[0]}}</td>
+            <td>{{item[1]}}</td>
+            <td>{{item[2]}}</td>
+        </tr>
+    {% endfor %}
+
+    </table>
+
+   </center>
+     <div class="jumbotron">
+        <h1>Enter the train ticket details</h1>
+        <form class="form-signin" action="/verifyTrain1" method="post">
+        <label>Train No</label>
+        <select name="TrainNo">
+            {% for item in trains %}
+                <option value={{item[0]}} >{{item[0]}}</option>
+            {% endfor %}
+
+        </select>
+        <br>
+        <label >Date</label>
+        <input type="date" name="Date" id="Date" class="form-control" placeholder="Date" required autofocus>
+        <br>
+        <label>Type of seat</label>
+        <br>
+        <input type="radio" name="type" value="NOEconomy" required checked>Economy<br>
+        <input type="radio" name="type" value="NOSleeper" required>Sleeper<br>
+        <input type="radio" name="type" value="NOAC" required>AC<br>
+        <br>
+        <label>Number of seats</label>
+        <br>
+        <input type="radio" name="number" value="1" requried checked>1<br>
+        <input type="radio" name="number" value="2" requried>2<br>
+        <input type="radio" name="number" value="3" requried>3<br>
+        <input type="radio" name="number" value="4" requried>4<br>
+        <input type="radio" name="number" value="5" requried>5<br>
+        <input type="radio" name="number" value="6" requried>6<br>
+        <input type="radio" name="number" value="7" requried>7<br>
+        <input type="radio" name="number" value="8" requried>8<br>
+        <input type="radio" name="number" value="9" requried>9<br>
+        <input type="radio" name="number" value="10" requried>10<br>
+
+        <button id="btnSignUp" class="btn btn-lg btn-primary btn-block" type="submit">Search</button>
+      </form>
+      </div>
+
+    
+
+
+     
+
+</body>
+ 
+</html>
